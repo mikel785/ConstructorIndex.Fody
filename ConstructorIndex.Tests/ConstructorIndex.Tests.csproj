@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <DisableFody>true</DisableFody>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FodyHelpers" Version="6.5.3" />
+    <PackageReference Include="nunit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConstructorIndex.Fody\ConstructorIndex.Fody.csproj" />
+    <ProjectReference Include="..\ConstructorIndex.TestLibrary\ConstructorIndex.TestLibrary.csproj" />
+    <ProjectReference Include="..\ConstructorIndex\ConstructorIndex.csproj" />
+  </ItemGroup>
+
+</Project>

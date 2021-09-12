@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Authors>Mikhail Kanygin</Authors>    
+    <Description>Inject constructor index automatic assignation into constructor code to ensure which one was called to create object.</Description>
+    <PackageTags>ContructorIndex, Fody, ILWeaving, Cecil</PackageTags>
+    <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
+    <PackageIconUrl>https://raw.githubusercontent.com/mikel785/ConstructorIndex.Fody/master/package_icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/mikel785/ConstructorIndex.Fody</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="6.5.3" PrivateAssets="none" />
+    <PackageReference Include="FodyPackaging" Version="6.5.3" PrivateAssets="All" />
+    <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" />
+  </ItemGroup>
+
+<Choose>
+  <When Condition=" '$(Configuration)'=='Debug' ">
+    <PropertyGroup>
+      <SignAssembly>false</SignAssembly>
+    </PropertyGroup>
+  </When>
+  <When Condition=" '$(Configuration)'=='Release' ">
+    <PropertyGroup>
+      <SignAssembly>true</SignAssembly>
+      <DelaySign>false</DelaySign>
+      <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>     
+    </PropertyGroup>
+  </When>
+</Choose>
+</Project>

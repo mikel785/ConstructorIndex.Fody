@@ -1,0 +1,8 @@
+<Project>
+ <Target Name="EmitCustomMessage" BeforeTargets="Build">
+   <Message Importance="High" Text="WeaverFile: $(WeaverFile)" />
+   <Message Importance="High" Text="WeaverDirPath: $(WeaverDirPath)" />
+   <Message Importance="High" Text="$(WeaverDirPath)\netstandard2.0\$(PackageId).dll" />
+   <Message Importance="High" Text="$(WeaverPropsFile)" />
+ </Target>
+</Project>
