@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 
 namespace ConstructorIndex
 {
@@ -8,7 +7,6 @@ namespace ConstructorIndex
     /// <code>public int method_name()</code>
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    [PublicAPI]
     public sealed class ConstructorIndexCallerAttribute : Attribute
     {
     }

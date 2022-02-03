@@ -97,6 +97,7 @@ namespace ConstructorIndex.Tests.Weavers
                 if (parameter.HasDefaultValue)
                 {
                     yield return parameter.DefaultValue;
+                    continue;
                 }
 
                 var valueType = parameter.ParameterType;

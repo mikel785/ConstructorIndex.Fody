@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Fody;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using Mono.Cecil.Rocks;
@@ -73,6 +75,8 @@ namespace ConstructorIndex.Fody
         /// <returns></returns>
         public static TypeDefinition GenerateIndexKeepingAttributeClass(ModuleDefinition module)
         {
+            Console.WriteLine($"Injecting index keeping attribute class");
+
             var attributeType = new TypeDefinition(
                 "",
                 "ConstructorIndexAttribute",
@@ -112,23 +116,7 @@ namespace ConstructorIndex.Fody
 
             attributeType.Methods.Add(constructor);
 
-            // apply attribute usage: class
-            var attrTargetsType = module.ImportReference(typeof(AttributeTargets));
-            var attributeUsageType = module.ImportReference(typeof(AttributeUsageAttribute));
-            var attributeConstructor = attributeUsageType.Resolve()
-                .GetConstructors()
-                .FirstOrDefault(c => c.Parameters.Count == 1 
-                                     && c.Parameters.Any(p => attrTargetsType.FullName.Equals(p.ParameterType.FullName) ));
-            var importedAttributeConstructor= module.ImportReference(attributeConstructor);
-
-            var usageAttributeInstance = new CustomAttribute(importedAttributeConstructor);
-            usageAttributeInstance.ConstructorArguments.Add(
-                new CustomAttributeArgument(
-                    module.TypeSystem.Int32, (int)AttributeTargets.Class));
-
-            attributeType.CustomAttributes.Add(usageAttributeInstance);
-
-            return attributeType.Resolve();
+           return attributeType.Resolve();
         }
 
         public static FieldDefinition MakeConstructorIndexFieldDefinition(ModuleDefinition module, TypeDefinition targetType, string defaultFieldName)
