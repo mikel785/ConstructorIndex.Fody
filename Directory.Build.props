@@ -1,8 +1,13 @@
 <Project>
   <PropertyGroup>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Version>0.0.6</Version>
+    <Version>0.0.7</Version>
     <LangVersion>latest</LangVersion>
-    <NoWarn>NU5118</NoWarn>
+    <NoWarn>NU5118;IL2121;1701;1702</NoWarn>
   </PropertyGroup>
+  <Target Name="GetTargetPath" Returns="@(_FakeOutputPath)">
+    <ItemGroup>
+      <_FakeOutputPath Include="$(MSBuildProjectDirectory)\$(PackageOutputPath)\$(AssemblyName).dll" />
+    </ItemGroup>
+  </Target>
 </Project>
