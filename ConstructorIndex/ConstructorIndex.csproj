@@ -4,6 +4,7 @@
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>Mikhail Kanygin</Authors>    
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
     <Description>Inject constructor index automatic assignation into constructor code to ensure which one was called to create object.</Description>
     <PackageTags>ContructorIndex, Fody, ILWeaving, Cecil</PackageTags>
     <PackageOutputPath>$(SolutionDir)nugets</PackageOutputPath>
